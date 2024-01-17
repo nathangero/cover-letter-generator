@@ -8,8 +8,8 @@ import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_PROJECT_KEY,
-  authDomain: import.meta.env.VITE_PROJECT_ID,
-  projectId: import.meta.env.VITE_PROJECT_DOMAIN,
+  authDomain: import.meta.env.VITE_PROJECT_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
   storageBucket: import.meta.env.VITE_PROJECT_BUCKET,
   messagingSenderId: import.meta.env.VITE_PROJECT_MESSAGING,
   appId: import.meta.env.VITE_PROJECT_APP_ID,
@@ -18,7 +18,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
