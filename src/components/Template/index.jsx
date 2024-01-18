@@ -35,17 +35,18 @@ export default function Template() {
       return companyValues[0];
     }
 
-    console.log("companyValues:", companyValues);
-
-    let valueStr;
+    let valueStr = "";
     companyValues.map((value, index) => {
-      console.log("index:", index, "value:", value);
-      if (!value) return;
+      if (!value) return; // Assertion check to prevent empty values
+
+      // Add the last value in the array to the string
       if (index === companyValues.length - 1 && companyValues.length > 1) {
-        valueStr += `and ${value}`
+        valueStr += ` and ${value}`
       } else if (companyValues.length > 2) {
         // Determine if a comma should go before "and" is appended
         valueStr += (index === companyValues.length - 2) ? value : `${value}, `;
+      } else { // Add value to string
+        valueStr += value;
       }
     })
 
@@ -125,61 +126,63 @@ export default function Template() {
         </div>
       </div>
 
+      <h1>Your Edits</h1>
       <div className="container-fluid row">
-        <h1>Your Edits</h1>
-        <div className="input-row">
-          <label className="mx-3">Company Name:</label>
-          <input className="form-control" onChange={onChangeCompanyName} placeholder="Cool Place Inc." />
+        <div className="col-6">
+          <div className="input-row">
+            <label className="mx-3">Company Name:</label>
+            <input className="form-control" onChange={onChangeCompanyName} placeholder="Cool Place Inc." />
+          </div>
+          <div className="input-row">
+            <label className="mx-3">Hiring Manager:</label>
+            <input className="form-control" onChange={onChangeHiringManager} placeholder="Their Name" />
+          </div>
+          <div className="input-row">
+            <label className="mx-3">Your Name:</label>
+            <input className="form-control" onChange={onChangeFullName} placeholder="First Last" />
+          </div>
+          <div className="input-row">
+            <label className="mx-3">Your Occupation:</label>
+            <input className="form-control" onChange={onChangeOccupation} placeholder="Cool Job Title" />
+          </div>
+          <div className="input-row">
+            <label className="mx-3">Your Workplace:</label>
+            <input className="form-control" onChange={onChangeOccupationWorkplace} placeholder="e.g. Cool Job Inc." />
+          </div>
+          <div className="input-row">
+            <label className="mx-3">Your Email:</label>
+            <input className="form-control" type="email" onChange={onChangeEmail} placeholder="test@example.com" />
+          </div>
+          <div className="input-row">
+            <label className="mx-3">Your Phone #:</label>
+            <input className="form-control" type="tel" onChange={onChangePhone} placeholder="e.g 555-555-5555" />
+          </div>
+          <div className="input-row">
+            <label className="mx-3">Start Date:</label>
+            <input className="form-control" onChange={onChangeStartDate} placeholder="e.g. 01/23/24" />
+          </div>
         </div>
-        <div className="input-row">
-          <label className="mx-3">Hiring Manager:</label>
-          <input className="form-control" onChange={onChangeHiringManager} placeholder="Their Name" />
-        </div>
-        <div className="input-row">
-          <label className="mx-3">Your Name:</label>
-          <input className="form-control" onChange={onChangeFullName} placeholder="First Last" />
-        </div>
-        <div className="input-row">
-          <label className="mx-3">Your Occupation:</label>
-          <input className="form-control" onChange={onChangeOccupation} placeholder="Cool Job Title" />
-        </div>
-        <div className="input-row">
-          <label className="mx-3">Your Workplace:</label>
-          <input className="form-control" onChange={onChangeOccupationWorkplace} placeholder="e.g. Cool Job Inc." />
-        </div>
-        <div className="input-row">
-          <label className="mx-3">Your Email:</label>
-          <input className="form-control" type="email" onChange={onChangeEmail} placeholder="test@example.com" />
-        </div>
-        <div className="input-row">
-          <label className="mx-3">Your Phone #:</label>
-          <input className="form-control" type="tel" onChange={onChangePhone} placeholder="e.g 555-555-5555" />
-        </div>
-        <div className="input-row">
-          <label className="mx-3">Start Date:</label>
-          <input className="form-control" onChange={onChangeStartDate} placeholder="e.g. 01/23/24" />
-        </div>
+        <div className="col-6">
+          <div className="input-row">
+            <form className="m-0" onSubmit={onSubmitValue}>
+              <label className="mx-3">Company Values:</label>
+              <div>
+                <input className="form-control me-3" value={value} onChange={onChangeCompanyValue} placeholder="One value at a time" />
+                {companyValues?.map((value, index) => (
+                  <div key={index} className="company-value mt-3">
+                    <p id={setValueId(value)} className="my-2 ps-2">{value}</p>
+                    <button className="btn" type="button" onClick={() => onClickRemoveValue(setValueId(value))}><i className="bi bi-x-lg"></i></button>
+                  </div>
+                ))}
+              </div>
+              <button type="submit" className="btn btn-primary">Add Value</button>
+            </form>
+          </div>
 
-
-        <div className="input-row">
-          <form className="m-0" onSubmit={onSubmitValue}>
-            <label className="mx-3">Company Values:</label>
-            <div>
-              <input className="form-control me-3" value={value} onChange={onChangeCompanyValue} placeholder="One value at a time" />
-              {companyValues?.map((value, index) => (
-                <div key={index} className="company-value mt-3">
-                  <p id={setValueId(value)} className="my-2 ps-2">{value}</p>
-                  <button className="btn" type="button" onClick={() => onClickRemoveValue(setValueId(value))}><i className="bi bi-x-lg"></i></button>
-                </div>
-              ))}
-            </div>
-            <button type="submit" className="btn btn-primary">Add Value</button>
-          </form>
-        </div>
-
-        <div className="input-row">
-          <label className="mx-3">About Me:</label>
-          <textarea className="form-control" onChange={onChangeAboutMe} placeholder="List your relevant work experience, extracurriculars, and projects" />
+          <div className="input-row">
+            <label className="mx-3">About Me:</label>
+            <textarea className="form-control" onChange={onChangeAboutMe} rows={5} placeholder="List your relevant work experience, extracurriculars, and projects" />
+          </div>
         </div>
       </div>
     </>
