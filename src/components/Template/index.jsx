@@ -52,6 +52,10 @@ export default function Template() {
     return valueStr;
   }
 
+  const setValueId = (val) => {
+    return val.split(" ").join("-");
+  }
+
   const onChangeCompanyName = ({ target }) => {
     setCompanyName(target.value);
   }
@@ -100,6 +104,11 @@ export default function Template() {
 
     setCompanyValues([...companyValues, value]);
     setValue("");
+  }
+
+  const onClickRemoveValue = (value) => {
+    const valueToRemove = document.getElementById(setValueId(value)).textContent;
+    setCompanyValues(companyValues.filter(value => value != valueToRemove))
   }
 
   return (
@@ -153,19 +162,19 @@ export default function Template() {
 
 
         <div className="input-row">
-          <form onSubmit={onSubmitValue}>
+          <form className="m-0" onSubmit={onSubmitValue}>
             <label className="mx-3">Company Values:</label>
-            <input className="form-control me-3" value={value} onChange={onChangeCompanyValue} placeholder="One value at a time" />
+            <div>
+              <input className="form-control me-3" value={value} onChange={onChangeCompanyValue} placeholder="One value at a time" />
+              {companyValues?.map((value, index) => (
+                <div key={index} className="company-value mt-3">
+                  <p id={setValueId(value)} className="my-2 ps-2">{value}</p>
+                  <button className="btn" type="button" onClick={() => onClickRemoveValue(setValueId(value))}><i className="bi bi-x-lg"></i></button>
+                </div>
+              ))}
+            </div>
             <button type="submit" className="btn btn-primary">Add Value</button>
           </form>
-          {companyValues?.map((value, index) => (
-            <>
-              <div key={index} className="company-value">
-                <p>{value}</p>
-                <button className="btn"><i className="bi bi-x-lg"></i></button>
-              </div>
-            </>
-          ))}
         </div>
 
         <div className="input-row">

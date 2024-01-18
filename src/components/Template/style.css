@@ -1,8 +1,10 @@
 .company-value {
   display: flex;
+  justify-content: space-between;
   align-items: baseline;
   border: 2px solid black;
   border-radius: 5px;
+  width: 200px;
 }
 
 .input-row,
