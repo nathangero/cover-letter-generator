@@ -46,6 +46,13 @@
   white-space: pre-wrap;
 }
 
+#template-manual-edit {
+  width: 80%;
+  height: fit-content;
+  text-align: start;
+  border-radius: 5px;
+}
+
 @media screen and (max-width: 478px) {
   .template {
     display: flex;
