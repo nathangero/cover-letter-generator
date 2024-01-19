@@ -11,7 +11,7 @@ export default function Nav() {
     <header>
       <nav className="nav nav-underline justify-content-end">
         <div className="container-fluid d-flex justify-content-between align-items-baseline">
-          <p className="navbar-brand fs-2 text-start">Cover Letter Generator</p>
+          <p className="navbar-brand fs-2 text-start">CL Generator</p>
           <ul className="list-unstyled list-group list-group-horizontal fs-2">
             <li className="mx-3">
               <Link to={ROUTES.HOME}
