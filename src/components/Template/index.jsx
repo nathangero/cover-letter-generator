@@ -120,17 +120,10 @@ export default function Template() {
 
   const onClickCopy = () => {
     // Get the text field
-    var copyText = document.getElementById("template-input").textContent;
-    console.log("copyText:", copyText);
-    // Select the text field
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); // For mobile devices
+    var copyText = document.getElementById("template-input").innerText; // .innerText properly copies newlines
 
     // Copy the text inside the text field
-    navigator.clipboard.writeText(copyText.value);
-
-    // Alert the copied text
-    alert("Copied the text: " + copyText.value);
+    navigator.clipboard.writeText(copyText);
   }
 
 
@@ -139,15 +132,21 @@ export default function Template() {
       <div>
         <h1>Template</h1>
         <div className="fs-5 template">
-          <p id="template-input">Dear <span className="user-input">{useHiringManager ? companyHiringManager : companyName}</span>,</p>
-          <p>I hope your day is going well! My name is <span className="user-input">{userFullName}</span>, and I&apos;m {getAorAn()} <span className="user-input">{userOccupation}</span> at <span className="user-input">{userOccupationWorkplace}</span>. I am very interested in working for <span className="user-input">{companyName}</span> and can start <span className="user-input">{userStartDate}</span>. Your commitment to <span className="user-input">{listCompanyValues()}</span> that I saw on the website inspired me! The products you build and the values you stand for make <span className="user-input">{companyName}</span> seem like an ideal workplace for me.</p>
-          <p>A little about me, <span className="user-input">{userAboutMe}</span></p>
-          <p>I think these experiences would make me a great candidate for you.</p>
-          <p>Please let me know if there&apos;s anything else you need from me. I look forward to hearing from you! I can be reached at <span className="user-input">{userEmail}</span> and <span className="user-input">{userPhone}</span>.</p>
-          <p>Best regards,<br /><span className="user-input">{userFullName}</span></p>
+          <p id="template-input">Dear <span className="user-input">{useHiringManager ? companyHiringManager : companyName}</span>,
+            <br /><br />
+            I hope your day is going well! My name is <span className="user-input">{userFullName}</span>, and I&apos;m {getAorAn()} <span className="user-input">{userOccupation}</span> at <span className="user-input">{userOccupationWorkplace}</span>. I am very interested in working for <span className="user-input">{companyName}</span> and can start <span className="user-input">{userStartDate}</span>. Your commitment to <span className="user-input">{listCompanyValues()}</span> that I saw on the website inspired me! The products you build and the values you stand for make <span className="user-input">{companyName}</span> seem like an ideal workplace for me.
+            <br /><br />
+            A little about me, <span className="user-input">{userAboutMe}</span>
+            <br /><br />
+            I think these experiences would make me a great candidate for you.
+            <br /><br />
+            Please let me know if there&apos;s anything else you need from me. I look forward to hearing from you! I can be reached at <span className="user-input">{userEmail}</span> and <span className="user-input">{userPhone}</span>.
+            <br /><br />
+            Best regards,<br /><span className="user-input">{userFullName}</span>
+          </p>
         </div>
 
-        {/* <button onClick={() => onClickCopy()}>Copy Template</button> */}
+        <button className="btn btn-primary" onClick={() => onClickCopy()}>Copy Template</button>
       </div>
     )
   }
