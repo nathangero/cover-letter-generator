@@ -1,0 +1,70 @@
+.company-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.input-row,
+.input-row form {
+  display: flex;
+  align-items: baseline;
+  margin: 10px 0;
+}
+
+.input-row label {
+  text-align: start;
+  min-width: 150px;
+}
+
+.input-row input {
+  text-align: start;
+  width: 200px;
+}
+
+.input-row textarea {
+  text-align: start;
+}
+
+.user-input {
+  color: red;
+}
+
+.template {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.template p {
+  text-align: start;
+  white-space: pre-wrap;
+}
+
+#template-manual-edit {
+  width: 80%;
+  height: fit-content;
+  text-align: start;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 478px) {
+  .template {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .input-row, .input-row form {
+    flex-direction: column;
+    justify-content: baseline;
+  }
+}
